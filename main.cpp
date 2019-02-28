@@ -27,7 +27,6 @@ bool set_number(int a[][4])
             x = rand()%4;
             y = rand()%4;
         }while(a[y][x]!=0);
-
         if(rand()%100>90)
         {
             a[y][x]=4;
@@ -43,6 +42,7 @@ bool set_number(int a[][4])
     }
     return flag;
 }
+
 void print(int a[][4])
 {
     for(int j=0; j<4; j++)
@@ -60,6 +60,7 @@ void print(int a[][4])
     SetConsoleCursorPosition(output,cursor);
     cout << "SCORE = " << score << "   ";
 }
+
 void reset(int a[][4])
 {
         for(int j=0; j<4; j++)
@@ -69,8 +70,8 @@ void reset(int a[][4])
                 a[j][i] = a[j][i] & 0x7fff;
             }
         }
-
 }
+
 void up(int a[][4])
 {
     bool flag;
@@ -180,7 +181,6 @@ void right(int a[][4])
                     a[j][i] = a[j][i] | 0x8000;
                     a[j][i - 1] = 0;
                     flag = true;
-
                 }
                 if(a[j][i] == 0 && a[j][i - 1] !=0)
                 {
@@ -192,7 +192,6 @@ void right(int a[][4])
         }
         Sleep(100);
         print(a);
-
     }while(flag == true);
     reset(a);
 }
@@ -203,9 +202,7 @@ int main()
     int a[4][4] = {2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2};
     bool game_over = false;
     score = 0;
-    //set_number(a);
-   game_over =  set_number(a);
-
+    game_over = set_number(a);
     print(a);
     while((i_input = getch())!=27 || game_over != true)
     {
@@ -224,25 +221,19 @@ int main()
             case 77:
                 {
                     right(a);
-
                     break;
-
                 }
             case 72:
                 {
                     up(a);
                     break;
                 }
-
         }
         if(i_input == 72 || i_input == 77 || i_input == 80 || i_input == 75)
         {
             game_over == set_number(a);
         }
-
          print(a);
-
     }
     return 0;
 }
-
